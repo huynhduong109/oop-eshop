@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+  .Footer_map {
+    display: flex;
+    justify-content: center;
+  }
+  .footer_logo-payment {
+    display: flex;
+  }
+}
+@media (max-width: 1024px) {
+  .footer_logo-payment {
+    display: flex;
+  }
+}

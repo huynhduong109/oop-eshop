@@ -1,0 +1,28 @@
+.range-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.range-slider__value {
+  display: inline-block;
+  margin-left: 10px;
+}

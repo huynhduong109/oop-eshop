@@ -1,0 +1,23 @@
+@media (max-width: 800px) {
+  .policy_row1 {
+    width: 100%;
+    padding: 0 0 10px 0;
+  }
+  .policy_row2 {
+    width: 100%;
+    padding-right: 32px;
+  }
+  .policy_header,
+  .policy_item {
+    margin-left: -8px;
+  }
+  .policy_container {
+    padding: 0;
+  }
+  .policy_body {
+    padding-left: 8px;
+  }
+  .policy_list {
+    padding: 0 32px;
+  }
+}

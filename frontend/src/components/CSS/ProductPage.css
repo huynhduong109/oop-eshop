@@ -1,0 +1,18 @@
+.conatainer_input_price {
+    display: none;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.conatainer_body_price {
+    display: flex;
+    align-items: center;
+}
+
+.conatainer_body_text {
+    padding: 0 8px 4px 0;
+}
+
+.searchValue {
+    display: none;
+}
