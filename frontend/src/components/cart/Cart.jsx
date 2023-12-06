@@ -72,7 +72,6 @@ const Cart = ({ setOpenCart }) => {
               </div>
             </div>
             <div className="px-5 mb-3">
-              {/* checkout buttons */}
               <Link to="/checkout">
                 <div
                   className={`h-[45px] flex items-center justify-center w-[100%] bg-[#e44343] rounded-[5px]`}>

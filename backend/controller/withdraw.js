@@ -104,7 +104,7 @@ router.put(
             } catch (error) {
                 return next(new ErrorHandler(error.message, 500));
             }
-            res.status(201).json({
+            return res.status(201).json({
                 success: true,
                 withdraw,
             });

@@ -5,7 +5,7 @@ import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { backend_url, server } from "../../server";
+import { backend_url } from "../../server";
 import { getAllProductsShop } from "../../redux/actions/product";
 import { deleteProduct, updateProduct } from "../../redux/actions/product";
 import Loader from "../Layout/Loader";
@@ -16,7 +16,6 @@ import * as XLSX from "xlsx";
 import { useNavigate } from "react-router-dom";
 import ChartComponentShop from "./ChartComponentShop";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 
 const AllProducts = () => {
@@ -124,7 +123,7 @@ const AllProducts = () => {
     const currentDate = new Date();
     const formattedDate = currentDate
       .toLocaleDateString("vi-VN")
-      .replaceAll("/", "-"); // Chuyển ngày thành chuỗi có dạng MM-DD-YYYY
+      .replaceAll("/", "-");
 
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.json_to_sheet(allProducts);
@@ -332,7 +331,6 @@ const AllProducts = () => {
                   type="date"
                   value={valEndDay}
                   onChange={handleEndDayChange}></input>
-                {/* <button onClick={handleSubmit}>Thống kê</button> */}
               </div>
             </div>
             {statistic ? (

@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import "chartjs-plugin-datalabels";
 
 function ChartComponentShop({ arrData, name }) {
-  // biểu đồ
-  //gộp các ngày trùng và tính tổng (object)
   const groupedDay = arrData?.reduce((result, order) => {
     const day = order?.day;
     const totalData = order?.total;
