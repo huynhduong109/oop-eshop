@@ -310,7 +310,7 @@ const AllOrders = () => {
       <DataGrid
         rows={row}
         columns={columns}
-        pageSize={10}
+        pageSize={8}
         disableSelectionOnClick
         autoHeight
       />
@@ -556,7 +556,7 @@ const TrackOrder = () => {
       <DataGrid
         rows={row}
         columns={columns}
-        pageSize={10}
+        pageSize={8}
         disableSelectionOnClick
         autoHeight
       />
@@ -579,7 +579,7 @@ const ChangePassword = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        toast.success(res.data.success);
+        toast.success("Thay đổi mật khẩu thành công");
         setOldPassword("");
         setNewPassword("");
         setConfirmPassword("");
