@@ -12,6 +12,7 @@ import Loader from "../Layout/Loader";
 import { categoriesData } from "../../static/data";
 import { AiFillFileExcel } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
 import * as XLSX from "xlsx";
 import { useNavigate } from "react-router-dom";
 import ChartComponentShop from "./ChartComponentShop";
@@ -20,6 +21,8 @@ import { toast } from "react-toastify";
 
 const AllProducts = () => {
   const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [idProduct, setIdProduct] = useState();
   const [valStartDay, setValStartDay] = useState("");
   const { success, error } = useSelector((state) => state.products);
   const [valEndDay, setValEndDay] = useState("");
@@ -34,7 +37,7 @@ const AllProducts = () => {
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
   const navigate = useNavigate();
-  
+
 
   const dispatch = useDispatch();
 
@@ -73,13 +76,23 @@ const AllProducts = () => {
     e.preventDefault();
     const id = selectedProduct._id;
 
-    dispatch(updateProduct(id, name,description,category, originalPrice, discountPrice, stock ));
+    dispatch(updateProduct(id, name, description, category, originalPrice, discountPrice, stock));
   };
 
 
-  const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
-    window.location.reload();
+  // Notify
+  const handleAccept = () => {
+    dispatch(deleteProduct(idProduct));
+    setOpenDelete(false);
+    toast.success("Xóa sản phẩm thành công");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
+  const handleOpenDelete = (id) => {
+    setOpenDelete(true);
+    setIdProduct(id);
   };
 
   const handleStartDayChange = (e) => {
@@ -243,7 +256,7 @@ const AllProducts = () => {
       renderCell: (params) => {
         return (
           <>
-            <Button onClick={() => handleDelete(params.id)}>
+            <Button onClick={() => handleOpenDelete(params.id)}>
               <AiOutlineDelete size={20} />
             </Button>
           </>
@@ -488,6 +501,34 @@ const AllProducts = () => {
                     />
                   </div>
                 </form>
+              </div>
+            </div>
+          )}
+          {openDelete && (
+            <div
+              id="toast"
+              class="fixed inset-0 flex items-center justify-center bg-edeff7">
+              <div class="bg-[#eef3ff] rounded-lg p-4 shadow-lg relative">
+                <div
+                  onClick={() => setOpenDelete(false)}
+                  class="absolute top-0 right-0 mt-2 mr-2 hover:cursor-pointer">
+                  <IoMdClose />
+                </div>
+                <p id="toast-message" class="text-gray-800 pt-5 flex items-center">
+                  Bạn có chắc chắn muốn xóa không?
+                </p>
+                <div class="flex justify-end mt-4">
+                  <button
+                    onClick={handleAccept}
+                    class="px-4 py-2 rounded-md bg-blue-500 text-white mr-2 hover:bg-blue-600 hover:cursor-pointer">
+                    Có
+                  </button>
+                  <button
+                    onClick={() => setOpenDelete(false)}
+                    class="px-4 py-2 rounded-md bg-gray-300 text-gray-800 cursor-pointer hover:bg-gray-400 hover:cursor-pointer">
+                    Không
+                  </button>
+                </div>
               </div>
             </div>
           )}

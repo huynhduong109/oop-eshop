@@ -9,8 +9,11 @@ import styles from "../../styles/styles";
 import Loader from "../Layout/Loader";
 import { server } from "../../server";
 import { toast } from "react-toastify";
+import { IoMdClose } from "react-icons/io";
 
 const AllCoupons = () => {
+  const [openDelete, setOpenDelete] = useState(false);
+  const [idProduct, setIdProduct] = useState();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -38,13 +41,25 @@ const AllCoupons = () => {
       });
   }, [dispatch]);
 
+  const handeleAccept = () => {
+    handleDelete(idProduct);
+    setOpenDelete(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+  const handleOpenDelete = (id) => {
+    setOpenDelete(true);
+    setIdProduct(id);
+  };
+
+
   const handleDelete = async (id) => {
     axios
       .delete(`${server}/coupon/delete-coupon/${id}`, { withCredentials: true })
       .then((res) => {
         toast.success("Mã giảm giá đã được xóa thành công!");
       });
-    window.location.reload();
   };
 
   const handleSubmit = async (e) => {
@@ -102,7 +117,7 @@ const AllCoupons = () => {
       renderCell: (params) => {
         return (
           <>
-            <Button onClick={() => handleDelete(params.id)}>
+            <Button onClick={() => handleOpenDelete(params.id)}>
               <AiOutlineDelete size={20} />
             </Button>
           </>
@@ -230,6 +245,34 @@ const AllCoupons = () => {
               </div>
             </div>
           )}
+        </div>
+      )}
+      {openDelete && (
+        <div
+          id="toast"
+          class="fixed inset-0 flex items-center justify-center bg-edeff7">
+          <div class="bg-[#eef3ff] rounded-lg p-4 shadow-lg relative">
+            <div
+              onClick={() => setOpenDelete(false)}
+              class="absolute top-0 right-0 mt-2 mr-2 hover:cursor-pointer">
+              <IoMdClose />
+            </div>
+            <p id="toast-message" class="text-gray-800 pt-5 flex items-center">
+              Bạn có chắc chắn muốn xóa không?
+            </p>
+            <div class="flex justify-end mt-4">
+              <button
+                onClick={handeleAccept}
+                class="px-4 py-2 rounded-md bg-blue-500 text-white mr-2 hover:bg-blue-600 hover:cursor-pointer">
+                Có
+              </button>
+              <button
+                onClick={() => setOpenDelete(false)}
+                class="px-4 py-2 rounded-md bg-gray-300 text-gray-800 cursor-pointer hover:bg-gray-400 hover:cursor-pointer">
+                Không
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>

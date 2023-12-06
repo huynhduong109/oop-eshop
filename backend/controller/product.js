@@ -45,7 +45,7 @@ router.get(
     "/get-all-products-shop/:id",
     catchAsyncErrors(async(req, res, next) => {
         try {
-            const products = await Product.find({ shopId: req.params.id });
+            const products = await Product.find({ shopId: req.params.id }).sort({ createdAt: -1 });
 
             res.status(201).json({
                 success: true,

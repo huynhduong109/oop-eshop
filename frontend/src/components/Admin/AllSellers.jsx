@@ -12,6 +12,7 @@ import { getAllSellers } from "../../redux/actions/sellers";
 import { Link } from "react-router-dom";
 import ChartComponentAdmin from "./ChartComponentAdmin";
 const AllSellers = () => {
+  
   const [valStartDay, setValStartDay] = useState("");
   const [valEndDay, setValEndDay] = useState("");
   const [statistic, setStatistic] = useState(false);
