@@ -107,35 +107,6 @@ router.post(
         }
     })
 );
-// activate password
-// router.post(
-//     "/reset-password",
-//     catchAsyncErrors(async(req, res, next) => {
-//         try {
-//             const { activation_token } = req.body;
-
-//             const newUser = jwt.verify(
-//                 activation_token,
-//                 process.env.ACTIVATION_SECRET
-//             );
-
-//             if (!newUser) {
-//                 return next(new ErrorHandler("Mã không hợp lệ", 400));
-//             }
-//             const { name, email, password, avatar } = newUser;
-
-//             let user = await User.findOne({ email });
-
-//             if (!user) {
-//                 return next(new ErrorHandler("Người dùng không tồn tại", 400));
-//             }
-
-//             sendToken(user, 201, res);
-//         } catch (error) {
-//             return next(new ErrorHandler(error.message, 500));
-//         }
-//     })
-// );
 
 // login user
 router.post(
